@@ -1,6 +1,7 @@
 package com.piotrpiechota;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,6 +56,19 @@ public class UserDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void update(User user) {
+        try (Connection conn = DBUtil.getConnection()) {
+            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
+            statement.setString(1, user.getUserName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPassword());
+            statement.setInt(4, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 
