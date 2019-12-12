@@ -59,7 +59,7 @@ class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.hashPassword(password);
     }
 
 //    public int getUser_group_id() {

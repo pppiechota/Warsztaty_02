@@ -1,29 +1,28 @@
 package com.piotrpiechota;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 
-public class UserDao {
-    private static final String CREATE_USER_QUERY =
-            "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
-    private static final String READ_USER_QUERY =
-            "SELECT id, username, email, password FROM users where id = ?";
-    private static final String UPDATE_USER_QUERY =
-            "UPDATE users SET username = ?, email = ?, password = ? where id = ?";
-    private static final String DELETE_USER_QUERY =
-            "DELETE FROM users WHERE id = ?";
-    private static final String FIND_ALL_USERS_QUERY =
-            "SELECT id, username, email, password FROM users";
+public class GroupDao {
+    private static final String CREATE_GROUP_QUERY =
+            "INSERT INTO user_groups(name) VALUES (?)";
+    private static final String READ_GROUP_QUERY =
+            "SELECT id, name FROM user_groups WHERE id = ?";
+    private static final String UPDATE_GROUP_QUERY =
+            "UPDATE user_groups SET name = ? WHERE id = ?";
+    private static final String DELETE_GROUP_QUERY =
+            "DELETE FROM user_groups WHERE id = ?";
+    private static final String FIND_ALL_GROUPS_QUERY =
+            "SELECT id, name FROM user_groups";
 
     public User create(User user) {
         try (Connection conn = DBUtil.getConnection()) {
             PreparedStatement statement =
-                    conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
+                    conn.prepareStatement(CREATE_GROUP_QUERY, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
@@ -41,7 +40,7 @@ public class UserDao {
 
     public User read(int userId) {
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(READ_USER_QUERY);
+            PreparedStatement statement = conn.prepareStatement(READ_GROUP_QUERY);
             statement.setInt(1, userId);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
@@ -61,11 +60,9 @@ public class UserDao {
 
     public void update(User user) {
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
+            PreparedStatement statement = conn.prepareStatement(UPDATE_GROUP_QUERY);
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
-            statement.setString(3, user.getPassword());
-            statement.setInt(4, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,7 +71,7 @@ public class UserDao {
 
     public void delete(int userId) {
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement(DELETE_USER_QUERY);
+            PreparedStatement statement = conn.prepareStatement(DELETE_GROUP_QUERY);
             statement.setInt(1, userId);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -85,7 +82,7 @@ public class UserDao {
     public User[] findAll() {
         try (Connection conn = DBUtil.getConnection()) {
             User[] users = new User[0];
-            PreparedStatement statement = conn.prepareStatement(FIND_ALL_USERS_QUERY);
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_GROUPS_QUERY);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
@@ -107,15 +104,3 @@ public class UserDao {
         return tmpUsers;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
