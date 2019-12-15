@@ -1,19 +1,20 @@
 package com.piotrpiechota;
 
-class User {
+public class User {
     private int id;
     private String userName;
     private String email;
     private String password;
-//    private int user_group_id;
+    private int userGroupId;
 
     public User() {
     }
 
-    public User(String userName, String email, String password) {
+    public User(String userName, String email, String password, int userGroupId) {
         this.userName = userName;
         this.email = email;
         this.hashPassword(password);
+        this.userGroupId = userGroupId;
     }
 
     public void hashPassword(String password) {
@@ -62,11 +63,11 @@ class User {
         this.hashPassword(password);
     }
 
-//    public int getUser_group_id() {
-//        return user_group_id;
-//    }
-//
-//    public void setUser_group_id(int user_group_id) {
-//        this.user_group_id = user_group_id;
-//    }
+    public int getUserGroupId() {
+        return userGroupId;
+    }
+
+    public void setUserGroupId(int userGroupId) {
+        this.userGroupId = userGroupId;
+    }
 }

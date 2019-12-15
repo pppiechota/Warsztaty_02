@@ -13,16 +13,12 @@ public class Solution {
     public Solution() {
     }
 
-    public Solution(String description, int exerciseId, int userId) {
-        this.created = new Date();
+    public Solution(Date created, Date updated, String description, int userId, int exerciseId) {
+        this.created = created;
+        this.updated = updated;
         this.description = description;
-        this.exerciseId = exerciseId;
         this.userId = userId;
-    }
-
-    public Solution(String description) {
-        this.created = new Date();
-        this.description = description;
+        this.exerciseId = exerciseId;
     }
 
     @Override

@@ -7,8 +7,7 @@ public class Group {
     public Group() {
     }
 
-    public Group(int id, String name) {
-        this.id = id;
+    public Group(String name) {
         this.name = name;
     }
 
