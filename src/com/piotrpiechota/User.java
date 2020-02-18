@@ -23,12 +23,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "User " + id +": " + userName + ", email: " + email + ", password: " + password;
     }
 
     public int getId() {

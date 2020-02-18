@@ -1,6 +1,5 @@
 package com.piotrpiechota.Dao;
 
-import com.piotrpiechota.DBUtil;
 import com.piotrpiechota.Solution;
 
 import java.sql.Connection;
@@ -47,8 +46,6 @@ public class SolutionDao {
                 statement.setTimestamp(2, null);
             }
 
-            statement.setTimestamp(1, new Timestamp(solution.getCreated().getTime()));
-            statement.setTimestamp(2, new Timestamp(solution.getUpdated().getTime()));
             statement.setString(3, solution.getDescription());
             statement.setInt(4, solution.getExerciseId());
             statement.setInt(5, solution.getUserId());

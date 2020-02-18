@@ -1,6 +1,5 @@
 package com.piotrpiechota.Dao;
 
-import com.piotrpiechota.DBUtil;
 import com.piotrpiechota.User;
 
 import java.sql.Connection;

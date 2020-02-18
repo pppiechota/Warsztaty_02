@@ -1,4 +1,4 @@
-package com.piotrpiechota;
+package com.piotrpiechota.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

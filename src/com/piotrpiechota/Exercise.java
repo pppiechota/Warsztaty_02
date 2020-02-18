@@ -15,11 +15,7 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Exercise " + id + ". title: " + title + ", description: " + description;
     }
 
     public int getId() {
